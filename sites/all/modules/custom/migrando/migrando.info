@@ -1,0 +1,4 @@
+name = Migrando ilDeposito
+description = "Utility di migrazione de ilDeposito.org"
+package = ilDeposito.org
+core = 7.x

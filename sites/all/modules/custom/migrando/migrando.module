@@ -1,0 +1,157 @@
+<?php
+
+/**
+ * @file
+ */
+require('migrando.inc.php');
+require('migrando.admin.inc');
+require('migrando_mapping.php.inc');
+
+require('inc/mapperContainer.php');
+
+require('inc/fieldTypeValues.php');
+
+/**
+ * Implements hook_menu().
+ */
+function migrando_menu() {
+  $items['admin/config/services/migrando'] = array(
+    'title' => 'Migrando ilDeposito.org',
+    'description' => 'Gestione migrazione ilDeposito.org',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('migrando_settings_form'),
+    'access arguments' => array('administer nodes'),
+    'file' => 'migrando.admin.inc',
+  );
+
+  $items['example/autocomplete'] = array(
+    'page callback' => '_module_name_autocomplete',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK
+  );
+  return $items;
+}
+
+/**
+ * Verifica se la sessione è attiva
+ * return boolean
+ */
+function migrando_check_auth() {
+  $auth = FALSE;
+  if (isset($_SESSION['migrando_auth'])) {
+    $options['headers']['Cookie'] = $_SESSION['migrando_auth'];
+    $data = array();
+    $options['data'] = http_build_query($data, '', '&');
+    $options['method'] = 'GET';
+    $response = drupal_http_request(MIGRANDO_API . '/api/user', $options);
+    if ($response->code == '200') {
+      $auth = TRUE;
+    }
+  }
+  return $auth;
+}
+
+/**
+ * Authenticazione a Services
+ */
+function migrando_authentication() {
+
+  $consumer_key = $GLOBALS['conf']['migrando_key'];
+  $consumer_secret = $GLOBALS['conf']['migrando_secret'];
+  $oauth = new OAuth($consumer_key, $consumer_secret, OAUTH_SIG_METHOD_HMACSHA1, OAUTH_AUTH_TYPE_URI);
+  return $oauth;
+}
+
+//  
+//  $data = array(
+//    'username' => 'services',
+//    'password' => variable_get('migrando_pwd'),
+//  );
+//  $data = http_build_query($data, '', '&');
+//  $options = array(
+//    'headers' => array(
+//      'Accept' => 'application/json',
+//    ),
+//    'method' => 'POST',
+//    'data' => $data
+//  );
+////
+//  $response = drupal_http_request(MIGRANDO_API . '/api/user/login', $options);
+//  if ($response->code == 200) {
+//    $data = json_decode($response->data);
+//    $_SESSION['migrando_auth'] = $data->session_name . '=' . $data->sessid;
+//  }
+//
+//  return;
+
+/**
+ * Call services to get entities
+ * @param type $entity_type
+ * @param type $parameters
+ * @param type $page
+ * @return type
+ */
+function migrando_get_contents($entity_type, $parameters, $page) {
+
+//  if (isset($parameters['auth']) && $parameters['auth'] === TRUE) {
+//    if (!migrando_check_auth()) {
+//      migrando_authentication();
+//    }
+//    $options['headers']['Cookie'] = $_SESSION['migrando_auth'];
+//  }
+
+//  $data = array();
+//  $options['data'] = http_build_query($data, '', '&');
+//  $options['method'] = 'GET';
+
+  if ($parameters) {
+    $url = MIGRANDO_API . 'api/' . $entity_type . '.json?' . $parameters['parameters'] . 'page=' . $page;
+  } else {
+    $url = MIGRANDO_API . 'api/' . $entity_type . '.json?page=' . $page;
+  }
+
+
+  $oauth = migrando_authentication();  
+  $data = $oauth->fetch($url);
+  $response_info = $oauth->getLastResponse();  
+  return json_decode($response_info);
+}
+
+function migrando_get_content($entity_type, $uuid) {
+
+//  if (isset($parameters['auth']) && $parameters['auth'] === TRUE) {
+//    if (!migrando_check_auth()) {
+//      migrando_authentication();
+//    }
+//    $options['headers']['Cookie'] = $_SESSION['migrando_auth'];
+//  }
+
+//  $data = array();
+//  $options['data'] = http_build_query($data, '', '&');
+//  $options['method'] = 'GET';
+  $url = MIGRANDO_API . 'api/' . $entity_type . '/' . $uuid . '.json';
+  $oauth = migrando_authentication();
+  $data = $oauth->fetch($url);
+  $response_info = $oauth->getLastResponse();
+  return json_decode($response_info);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function migrando_theme($existing, $type, $theme, $path) {
+  return array(
+    'sergio' => array(
+
+      //'template' => 'sergio-durzu',
+//      'preprocess functions' => array(
+//        'template_preprocess_sergio',
+//      ),
+    ),
+  );
+}
+
+//function template_preprocess_sergio(&$variables) {
+//  $variables['sergio'] = 'sergio';
+//  $variables['theme_hook_suggestions'][] = 'sergio__durzu';
+//}
