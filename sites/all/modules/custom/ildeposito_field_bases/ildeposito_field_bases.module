@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the ilDeposito - Field Bases feature.
+ */
+
+include_once 'ildeposito_field_bases.features.inc';
