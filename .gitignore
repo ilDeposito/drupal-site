@@ -5,6 +5,7 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-# Ignore IDE files
+# IDE paths
 .idea*
 nbproject*
+
