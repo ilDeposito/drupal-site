@@ -5,14 +5,21 @@
  */
 
 /**
- * Return entities ID
+ * @param $entity_type
+ * @param null $bundle
+ * @param null $column
+ * @param null $value
+ * @param null $field_name
+ * @param null $status
+ * @param null $property_order_by
+ * @return array
  */
-function ildeposito_utils_get_entity($entity_type, $bundle = NULL, $column = NULL, $value = NULL, $field = NULL, $status = NULL, $property_order_by = NULL) {
+function ildeposito_utils_get_entity($entity_type, $bundle = NULL, $field_name = NULL,  $column = NULL, $value = NULL, $status = NULL, $property_order_by = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', $entity_type);
 
-  if ($field && $value && $column) {
-    $query->fieldCondition($field, $column, $value, '=');
+  if ($field_name && $value && $column) {
+    $query->fieldCondition($field_name, $column, $value, '=');
   }
 
   if ($bundle) {
@@ -38,20 +45,4 @@ function ildeposito_utils_get_entity($entity_type, $bundle = NULL, $column = NUL
   }
 
   return $entity_ids;
-}
-
-
-
-/**
- * Recupera il title in base al nid
- * @param type $nid
- */
-function wcap_utils_get_title($nid) {
-  $title = FALSE;
-  $query = db_select('node', 'n');
-  $query->condition('n.nid', $nid, '=');
-  $query->fields('n', array('title'));
-  $result = $query->execute()->fetchAll();
-  $title = $result[0]->title;
-  return $title;
 }

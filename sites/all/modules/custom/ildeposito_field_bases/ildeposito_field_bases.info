@@ -36,6 +36,7 @@ features[field_base][] = field_itinerary
 features[field_base][] = field_language
 features[field_base][] = field_links
 features[field_base][] = field_location
+features[field_base][] = field_media
 features[field_base][] = field_music_author
 features[field_base][] = field_original_language
 features[field_base][] = field_original_song

@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function ildeposito_layout_preprocess_node(&$vars) {
+  $vars['theme_hook_suggestions'][] = 'node__' . $vars['type'] . '__' . $vars['view_mode'];
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ildeposito_layout_theme() {
+  return array(
+    'ildeposito_pseudo_field' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function ildeposito_layout_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['related_content'] = array(
+    'label' => t('Related content'),
+    'custom settings' => FALSE,
+  );
+}
+
+/**
+ * Theme output of a pseudo_field. *
+ * @see http://drupal.org/node/1471706
+ */
+function theme_ildeposito_pseudo_field($vars) {
+  $classes = array('clearfix', 'field');
+
+  if (isset($vars['element']['#field_name'])) {
+    $classes[] = 'field-name-' . strtr($vars['element']['#field_name'], '_', '-');
+  }
+
+  if (isset($vars['element']['#label_display'])) {
+    $classes[] = 'field-label-' . $vars['element']['#label_display'];
+  }
+
+  $output = '<div class="' . implode(' ', $classes) . '">';
+  if (isset($vars['element']['#title'])) {
+    $output .= '<div class="field-label">' . $vars['element']['#title'] . '&nbsp;</div>';
+  }
+  $output .= '<div class="field-items">' . $vars['element']['#markup'] . '</div>';
+  $output .= '</div>';
+  return $output;
+}
