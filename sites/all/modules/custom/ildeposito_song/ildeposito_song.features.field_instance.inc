@@ -57,6 +57,13 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 4,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -101,6 +108,15 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 5,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -136,6 +152,13 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 9,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
@@ -190,6 +213,13 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 8,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -236,6 +266,15 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 7,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -272,6 +311,13 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 10,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'link',
         'settings' => array(),
@@ -328,6 +374,13 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 13,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'file',
         'settings' => array(),
@@ -396,6 +449,15 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'entityreference_label',
         'weight' => 6,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -431,6 +493,15 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 1,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
@@ -475,6 +546,13 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 11,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'link',
         'settings' => array(),
@@ -538,6 +616,13 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 12,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 12,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -576,6 +661,13 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 3,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'taxonomy',
         'settings' => array(),
@@ -622,6 +714,13 @@ function ildeposito_song_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
+      'related_content' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -659,6 +758,21 @@ function ildeposito_song_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'show_remaining_days' => FALSE,
+          'show_repeat_rule' => 'show',
+        ),
+        'type' => 'date_default',
+        'weight' => 0,
+      ),
+      'related_content' => array(
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
