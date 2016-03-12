@@ -13,11 +13,13 @@ include_once 'includes/ildeposito_song_pseudo_fields.inc';
 function ildeposito_song_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'song' && $view_mode == 'full') {
 
+    $node_wrap = new SongNodeWrapper($node);
+
     $node->content['related_event'] = array(
       '#type' => 'item',
       '#field_name' => 'field_pseudo_related_event',
       '#label' => t('Related event:'),
-      '#markup' => _ildeposito_song_related_event($node),
+      '#markup' => _ildeposito_song_related_event($node_wrap),
       '#theme_wrappers' => array('ildeposito_pseudo_field'),
       '#label_display' => 'inline',
     );
@@ -26,10 +28,43 @@ function ildeposito_song_node_view($node, $view_mode, $langcode) {
       '#type' => 'item',
       '#field_name' => 'field_pseudo_translation',
       '#label' => t('Translation:'),
-      '#markup' => _ildeposito_song_translation($node),
+      '#markup' => _ildeposito_song_translation($node_wrap),
+      '#theme_wrappers' => array('ildeposito_pseudo_field'),
+      '#label_display' => 'inline',
+    );
+
+    $node->content['details'] = array(
+      '#type' => 'item',
+      '#field_name' => 'field_pseudo_translation',
+      '#label' => t('Song details:'),
+      '#markup' => _ildeposito_song_details($node_wrap),
       '#theme_wrappers' => array('ildeposito_pseudo_field'),
       '#label_display' => 'inline',
     );
   }
+}
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function ildeposito_song_field_extra_fields() {
+  $extra['node']['song']['display'] = array(
+    'details' => array(
+      'label' => t('Details'),
+      //'description' => t('Articolazione dell\'operazione.'),
+      'weight' => 10,
+    ),
+    'translation' => array(
+      'label' => t('Translation'),
+      //'description' => t('Articolazione foglia dell\'operazione.'),
+      'weight' => 10,
+    ),
+    'related_event' => array(
+      'label' => t('Related event'),
+      //'description' => t('Provincia dell\'operazione.'),
+      'weight' => 10,
+    ),
+  );
+  return $extra;
 }
 
