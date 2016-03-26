@@ -73,46 +73,28 @@
  * @ingroup templates
  */
 ?>
-<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
-  <div class="<?php print $container_class; ?>">
-    <div class="navbar-header">
-      <?php if ($logo): ?>
-        <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a>
-      <?php endif; ?>
+<header id="navbar" role="banner" class="">
+  <div id="header" class="container-fluid">
 
-      <?php if (!empty($site_name)): ?>
-        <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-      <?php endif; ?>
-
-      <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only"><?php print t('Toggle navigation'); ?></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      <?php endif; ?>
-    </div>
-
-    <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-      <div class="navbar-collapse collapse">
-        <nav role="navigation">
-          <?php if (!empty($primary_nav)): ?>
-            <?php print render($primary_nav); ?>
-          <?php endif; ?>
-          <?php if (!empty($secondary_nav)): ?>
-            <?php print render($secondary_nav); ?>
-          <?php endif; ?>
-          <?php if (!empty($page['navigation'])): ?>
-            <?php print render($page['navigation']); ?>
-          <?php endif; ?>
-        </nav>
-      </div>
-    <?php endif; ?>
+    <div class="logo-logo"><?php print $logo; ?></div>
+    <div
+      class="logo-title"><?php print $site_title; ?><?php print $site_subtitle; ?></div>
+    <div class="top-right-menu" aria-hidden="true"
+    ">
+    <?php print $top_right_menu; ?>
   </div>
+  </div>
+
+  <div id="mainmenu" class="container-fluid">
+    <?php print $top_menu; ?>
+  </div>
+
+  <div id="submenu" class="container-fluid">
+    <?php print $sub_menu; ?>
+  </div>
+
 </header>
+
 
 <div class="main-container <?php print $container_class; ?>">
 
@@ -134,9 +116,10 @@
 
     <section<?php print $content_column_class; ?>>
       <?php if (!empty($page['highlighted'])): ?>
-        <div class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
+        <div
+          class="highlighted jumbotron"><?php print render($page['highlighted']); ?></div>
       <?php endif; ?>
-      <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
+      <?php if (!empty($breadcrumb)): print $breadcrumb; endif; ?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
       <?php if (!empty($title)): ?>
@@ -165,8 +148,22 @@
   </div>
 </div>
 
-<?php if (!empty($page['footer'])): ?>
-  <footer class="footer <?php print $container_class; ?>">
-    <?php print render($page['footer']); ?>
-  </footer>
-<?php endif; ?>
+
+<footer class="footer container-fluid">
+
+  <div class="container row">
+    <div class="col-md-3">
+      <h4><?php print t('Disclaimer'); ?></h4>
+      <p>Questo è il disclaimer. Questo è il disclaimer. Questo è il disclaimer. Questo è il disclaimer.</p>
+    </div>
+    <div class="col-md-3 col-md-push-2">
+      <h4><?php print t('Links'); ?></h4>
+
+      <?php print $footer_menu; ?>
+    </div>
+    <div class="col-md-3 col-md-push-3">
+      <h4><?php print t('Social'); ?></h4>
+    </div>
+
+  </div>
+</footer>
